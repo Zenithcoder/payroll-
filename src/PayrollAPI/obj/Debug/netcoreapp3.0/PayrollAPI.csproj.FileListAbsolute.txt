@@ -68,3 +68,10 @@
 /Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/mac/Documents/dotnet/payroll/src/PayrollAPI/obj/Debug/netcoreapp3.0/PayrollAPI.csproj.CopyComplete
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/AutoMapper.dll
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/Microsoft.OpenApi.dll
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/bin/Debug/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/mac/Documents/dotnet/payroll/src/PayrollAPI/obj/Debug/netcoreapp3.0/PayrollAPI.MvcApplicationPartsAssemblyInfo.cs

@@ -30,10 +30,10 @@ namespace PayrollAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
+            userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
 
-            if (await _repo.UserExists(userForRegisterDto.Username))
-                return BadRequest("Username already exists");
+            if (await _repo.UserExists(userForRegisterDto.Email))
+                return BadRequest("Email already exists");
 
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
@@ -41,13 +41,14 @@ namespace PayrollAPI.Controllers
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
 
-            return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
+           // return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
+           return StatusCode(201);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
+            var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
 
             if (userFromRepo == null)
                 return Unauthorized();
@@ -55,7 +56,7 @@ namespace PayrollAPI.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+                new Claim(ClaimTypes.Name, userFromRepo.Name)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8

@@ -15,6 +15,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Logging;
 using PayrollAPI.Data;
+using AutoMapper;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 
 namespace PayrollAPI
@@ -32,9 +36,43 @@ namespace PayrollAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-             services.AddDbContext<DataContext>(x =>  x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-               services.AddScoped<IAuthRepository, AuthRepository>();
-             
+            services.AddCors();
+            services.AddDbContext<DataContext>(x =>  x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+           // Register the Swagger generator, defining 1 or more Swagger documents
+         /*   services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+    }); */
+
+    // Register the Swagger generator, defining 1 or more Swagger documents
+services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Payroll API",
+        Description = "Payroll API for outsourcing",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Zenithcoder",
+            Email = string.Empty,
+            Url = new Uri("https://twitter.com/zenithcoder"),
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Use under LICX",
+            Url = new Uri("https://example.com/license"),
+        }
+    });
+});
+          /*  services.AddMvc()
+    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressMapClientErrors = true;
+    }); */
+            services.AddScoped<IAuthRepository, AuthRepository>();
+             services.AddAutoMapper(typeof(Startup));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -55,8 +93,17 @@ namespace PayrollAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+           // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
 
-            app.UseHttpsRedirection();
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+           // app.UseHttpsRedirection();
 
             app.UseRouting();
 
