@@ -9,12 +9,16 @@ namespace PayrollAPI.Helpers
     {
         public AutoMapperProfiles()
         {
-           CreateMap<User, UserForListDto>();
-                 
+            CreateMap<User, UserForListDto>();
+            CreateMap<CompanyForCreationDto, Company>().ReverseMap();
             CreateMap<User, UserForDetailedDto>();
-                 
-         //   CreateMap<UserForUpdateDto, User>();
-             CreateMap<UserForRegisterDto, User>();
+            CreateMap<CompanyForUpdateDto, Company>();
+            CreateMap<UserForRegisterDto, User>();
+            CreateMap<CompanyForCreationDto, Compensation>().ReverseMap();
+            CreateMap<DeductionForCreationDto, Deduction>().ReverseMap();
+            CreateMap<CompensationForUpdateDto, Compensation>();
+            CreateMap<DeductionForUpdateDto, Deduction>();
+            CreateMap<EmployeeForCreationDto, Employee>().ReverseMap();
         }
     }
 }

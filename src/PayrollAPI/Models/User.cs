@@ -15,5 +15,6 @@ namespace PayrollAPI.Models
         public string Country { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
+        public ICollection<Company> Companies { get; set; }
     }
 }

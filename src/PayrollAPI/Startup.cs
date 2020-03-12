@@ -69,9 +69,11 @@ services.AddSwaggerGen(c =>
           /*  services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0).ConfigureApiBehaviorOptions(options =>
     {
-        options.SuppressMapClientErrors = true;
+        options.SuppressMapClientErrors = true; 
     }); */
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
              services.AddAutoMapper(typeof(Startup));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -107,7 +109,7 @@ services.AddSwaggerGen(c =>
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
