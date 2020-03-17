@@ -19,6 +19,7 @@ namespace PayrollAPI.Helpers
             CreateMap<CompensationForUpdateDto, Compensation>();
             CreateMap<DeductionForUpdateDto, Deduction>();
             CreateMap<EmployeeForCreationDto, Employee>().ReverseMap();
+            CreateMap<Employee, EmployeeForDetailedDto>();
         }
     }
 }

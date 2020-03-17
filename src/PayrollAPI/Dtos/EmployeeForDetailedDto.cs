@@ -1,13 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using PayrollAPI.Models;
 
-namespace PayrollAPI.Models
+namespace PayrollAPI.Dtos
 {
-    public class Employee
+    public class EmployeeForDetailedDto
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
+       public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
         public string PhoneNumber { get; set; }
@@ -22,8 +22,8 @@ namespace PayrollAPI.Models
         public string EmploymentLevel { get; set; }
         public DateTime ResumptionDate { get; set; }
         public DateTime Created { get; set; }
-         public Company Company { get; set; }
-        public int CompanyId { get; set; }
-         
+       public ICollection<ECompDeductForListDto> ECompDeducts { get; set; }
+        
+       
     }
 }

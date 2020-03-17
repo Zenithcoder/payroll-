@@ -19,5 +19,10 @@ namespace PayrollAPI.Models
         public DateTime Created { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        public PlanBilling PlanBilling { get; set; }
+        public int PlanBillingId { get; set; }
+        public PayRollDay PayRollDay { get; set; }
+        public int PayRollDayId { get; set; }
+        public float Wallet { get; set; }
     }
 }

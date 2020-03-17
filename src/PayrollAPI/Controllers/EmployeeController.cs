@@ -20,7 +20,7 @@ namespace PayrollAPI.Controllers
     {
         private readonly IEmployeeRepository _repo;
         private readonly IMapper _mapper;
-
+        private readonly DataContext _context;
         public EmployeeController(IEmployeeRepository repo, IMapper mapper)
         {
             _mapper = mapper;
@@ -37,6 +37,21 @@ namespace PayrollAPI.Controllers
             var employee = _mapper.Map<Employee>(employeeForCreationDto);
             _repo.Add(employee);
 
+            foreach (var ecompdeduct in employeeForCreationDto.ECompDeducts)
+         {
+             _context.EcompDeducts.Add(new EcompDeduct()
+             {
+                  Name  = ecompdeduct.Name,
+                Year = ecompdeduct.Year,
+                Value = ecompdeduct.Value,
+                Type = ecompdeduct.Type,
+                EmployeeId = employee.Id,
+                CompanyId = companyid
+             });
+         }
+
+            _context.SaveChanges();
+
             if (await _repo.SaveAll())
             {
                 return Ok(employee);
@@ -44,19 +59,21 @@ namespace PayrollAPI.Controllers
 
             return BadRequest("Could not add the employee");
         }
-/*
+ 
          [HttpGet("find/{id}")]
-        public async Task<IActionResult> GetCompany( int id)
+        public async Task<IActionResult> GetEmployee( int id)
         {
-            var getCompanyFromRepo = await _repo.GetCompany(id);
+            var employee = await _repo.GetEmployee(id);
 
-            if (getCompanyFromRepo == null)
+            var employeeToReturn = _mapper.Map<UserForDetailedDto>(employee);
+
+            if (employeeToReturn == null)
                 return NotFound();
 
-            return Ok(getCompanyFromRepo);
+            return Ok(employeeToReturn);
         }
 
-
+/*
          [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCompany(int id, CompanyForUpdateDto companyForUpdateDto)
         {

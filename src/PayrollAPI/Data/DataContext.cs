@@ -12,5 +12,6 @@ namespace PayrollAPI.Data
          public DbSet<Compensation> Compensations { get; set; }
          public DbSet<Deduction> Deductions { get; set; }
          public DbSet<Employee> Employees { get; set; }
+          public DbSet<EcompDeduct> EcompDeducts { get; set; }
     }
 }

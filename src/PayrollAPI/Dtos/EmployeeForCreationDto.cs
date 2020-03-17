@@ -19,9 +19,13 @@ namespace PayrollAPI.Dtos
         public string JobTitle { get; set; }
         public string StaffNumber { get; set; }
         public string EmploymentLevel { get; set; }
+
+        public string Year { get; set; }
         public DateTime ResumptionDate { get; set; }
          public DateTime Created { get; set; }
-          public int CompanyId { get; set; }
+        public int CompanyId { get; set; }
+        
+         public ICollection<ECompDeductForCreationDto> ECompDeducts { get; set; }
         public EmployeeForCreationDto()
         {
             Created = DateTime.Now;

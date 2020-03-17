@@ -30,6 +30,12 @@ namespace PayrollAPI.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
+        public async Task<Employee> GetEmployee(int id)
+        {
+            var employee = await _context.Employees.FirstOrDefaultAsync(u => u.Id == id);
+
+            return employee;
+        }
         
     }
 }
