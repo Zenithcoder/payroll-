@@ -37,7 +37,13 @@ namespace PayrollAPI
         {
             services.AddControllers();
             services.AddCors();
-            services.AddDbContext<DataContext>(x =>  x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+         //   services.AddDbContext<DataContext>(x =>  x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+         
+            services.AddDbContext<DataContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection2")));     
+
+// Automatically perform database migration
+services.BuildServiceProvider().GetService<DataContext>().Database.Migrate();
            // Register the Swagger generator, defining 1 or more Swagger documents
          /*   services.AddSwaggerGen(c =>
     {

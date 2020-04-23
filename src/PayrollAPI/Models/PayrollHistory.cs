@@ -11,8 +11,8 @@ namespace PayrollAPI.Models
         public string PayrollType { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
-        public PayoutHistory PayoutHistory { get; set; }
-        public int PayoutHistoryId { get; set; } 
+        public virtual PayoutHistory PayoutHistory { get; set; }
+        public int? PayoutHistoryId { get; set; } 
         public string PayoutHistoryUniqueCode { get; set; } 
          public Company Company { get; set; }
         public int CompanyId { get; set; }
