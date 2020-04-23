@@ -12,6 +12,9 @@ namespace PayrollAPI.Data
          public DbSet<Compensation> Compensations { get; set; }
          public DbSet<Deduction> Deductions { get; set; }
          public DbSet<Employee> Employees { get; set; }
-          public DbSet<EcompDeduct> EcompDeducts { get; set; }
+        public DbSet<EcompDeduct> EcompDeducts { get; set; }
+        public DbSet<WalletTransaction> WalletTransactions { get; set; }
+         public DbSet<PayoutHistory> PayoutHistories { get; set; }
+         public DbSet<PayrollHistory> PayrollHistories { get; set; }
     }
 }

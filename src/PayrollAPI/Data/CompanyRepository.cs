@@ -49,5 +49,17 @@ namespace PayrollAPI.Data
             var deduction = await _context.Deductions.FirstOrDefaultAsync(u => u.Id == id);
             return deduction;
         }
+
+        public async Task<IEnumerable<Employee>> GetCompanyEmployees(int companyid)
+        {
+             var employees =  await _context.Employees.Where(e => e.CompanyId == companyid).ToListAsync();
+             return employees;
+        }
+
+        public async Task<IEnumerable<Employee>> GetActiveCompanyEmployees(int companyid)
+        {
+             var employees =  await _context.Employees.Where(e => e.CompanyId == companyid && e.Status == "active").ToListAsync();
+             return employees;
+        }
     }
 }

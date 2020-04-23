@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PayrollAPI.Models;
 
@@ -11,6 +12,8 @@ namespace PayrollAPI.Data
          Task<Company> GetCompany(int id);
          Task<Compensation> GetCompensation(int id);
          Task<Deduction> GetDeduction(int id);
+        Task<IEnumerable<Employee>> GetCompanyEmployees (int companyid);
+        Task<IEnumerable<Employee>> GetActiveCompanyEmployees (int companyid);
         
     }
 }

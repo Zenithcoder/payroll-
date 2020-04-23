@@ -21,8 +21,7 @@ namespace PayrollAPI.Models
         public int UserId { get; set; }
         public PlanBilling PlanBilling { get; set; }
         public int PlanBillingId { get; set; }
-        public PayRollDay PayRollDay { get; set; }
-        public int PayRollDayId { get; set; }
+        public string PayRollDay { get; set; }
         public float Wallet { get; set; }
     }
 }

@@ -21,10 +21,11 @@ namespace PayrollAPI.Controllers
         private readonly IEmployeeRepository _repo;
         private readonly IMapper _mapper;
         private readonly DataContext _context;
-        public EmployeeController(IEmployeeRepository repo, IMapper mapper)
+        public EmployeeController(IEmployeeRepository repo, IMapper mapper, DataContext context)
         {
             _mapper = mapper;
             _repo = repo;
+            _context = context;
         }
 
          [HttpPost("create/{companyid}")]

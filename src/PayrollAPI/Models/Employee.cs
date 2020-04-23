@@ -24,6 +24,9 @@ namespace PayrollAPI.Models
         public DateTime Created { get; set; }
          public Company Company { get; set; }
         public int CompanyId { get; set; }
+        public string AccountNumber { get; set; }
+        public string BankName { get; set; }
+        public float NetPay { get; set; }
          
     }
 }

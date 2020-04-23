@@ -20,11 +20,13 @@ namespace PayrollAPI.Controllers
     {
         private readonly ICompanyRepository _repo;
         private readonly IMapper _mapper;
-
-        public CompanyController(ICompanyRepository repo, IMapper mapper)
+        private readonly DataContext _context;
+        public CompanyController(ICompanyRepository repo, IMapper mapper,DataContext context)
         {
             _mapper = mapper;
             _repo = repo;
+            _context = context;
+
         }
 
          [HttpPost("create")]
@@ -155,6 +157,18 @@ namespace PayrollAPI.Controllers
                 return Ok();
 
             return BadRequest("Failed to delete the deduction");
+        }
+
+
+          [HttpGet("getemployee/{companyid}")]
+        public async Task<IActionResult> GetCompanyEmployees( int companyid)
+        {
+           var employees =  await _repo.GetCompanyEmployees(companyid);
+        
+            if (employees == null)
+                return NotFound();
+
+            return Ok(employees);
         }
        
     }
