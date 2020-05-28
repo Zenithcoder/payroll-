@@ -14,6 +14,8 @@ namespace PayrollAPI.Data
          Task<Deduction> GetDeduction(int id);
         Task<IEnumerable<Employee>> GetCompanyEmployees (int companyid);
         Task<IEnumerable<Employee>> GetActiveCompanyEmployees (int companyid);
+        Task<int> GetStaffStrength(int companyid);
+        Task<int> GetDisStaffStrength(int companyid);
         
     }
 }

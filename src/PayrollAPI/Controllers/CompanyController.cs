@@ -170,6 +170,28 @@ namespace PayrollAPI.Controllers
 
             return Ok(employees);
         }
+
+         [HttpGet("getstaffstrength/{companyid}")]
+        public async Task<IActionResult> GetStaffStrength( int companyid)
+        {
+           var staff =  await _repo.GetStaffStrength(companyid);
+        
+            if (staff == null)
+                return NotFound();
+
+            return Ok(staff);
+        }
+
+         [HttpGet("getdisstaffstrength/{companyid}")]
+        public async Task<IActionResult> GetDisStaffStrength( int companyid)
+        {
+           var staff =  await _repo.GetDisStaffStrength(companyid);
+        
+            if (staff == null)
+                return NotFound();
+
+            return Ok(staff);
+        }
        
     }
 }

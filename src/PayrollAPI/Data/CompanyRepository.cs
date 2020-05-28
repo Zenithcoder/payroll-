@@ -61,5 +61,17 @@ namespace PayrollAPI.Data
              var employees =  await _context.Employees.Where(e => e.CompanyId == companyid && e.Status == "active").ToListAsync();
              return employees;
         }
+
+         public async Task<int> GetStaffStrength (int companyid)
+        {
+             var staffs =  await _context.Employees.Where(e => e.CompanyId == companyid).CountAsync();
+             return staffs;
+        }
+
+         public async Task<int> GetDisStaffStrength (int companyid)
+        {
+             var staffs =  await _context.Employees.Where(e => e.CompanyId == companyid && e.Status == "inactive").CountAsync();
+             return staffs;
+        }
     }
 }
